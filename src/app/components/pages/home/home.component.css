@@ -1,0 +1,22 @@
+#banner {
+    background: #2EC4B6;
+    background: linear-gradient(to right, #2EC4B6, #239589);
+    color: #fff;
+    padding-top: 5%;
+}
+
+.promo-title {
+    font-size: 50px;
+    font-weight: 600;
+    margin-top: 100px;
+    color: #fff;
+}
+
+.btn-custom {
+    background-color: #FF9F1C;
+}
+
+#banner a {
+    color: #fff;
+    text-decoration: none;
+}

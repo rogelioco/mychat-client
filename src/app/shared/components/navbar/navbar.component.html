@@ -1,0 +1,29 @@
+<div class="sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home']">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li *ngIf="!loggedIn()" class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/login']">Log in</a>
+        </li>
+        <li *ngIf="!loggedIn()" class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/sign-up']">Sign up</a>
+        </li>
+        <li *ngIf="loggedIn()" class="nav-item">
+          <a class="nav-link active" [routerLink]="['/chats']">Chats</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" [routerLink]="['/upload-file']">New chat</a>
+        </li>
+        <li *ngIf="loggedIn()" class="nav-item">
+          <a class="nav-link active" aria-current="page" (click)="onLogOut()">Log out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>

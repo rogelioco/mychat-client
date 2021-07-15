@@ -1,0 +1,122 @@
+.bg {
+    background-image: url(/assets/images/options.svg);
+    background-position: center center;
+    background-repeat: no-repeat
+}
+
+.bg-favorites {
+    background-image: url(/assets/images/favorites.svg);
+    background-position: center center;
+    background-repeat: no-repeat
+}
+
+.bg-color {
+    background: #2EC4B6;
+    background: linear-gradient(to right, #2EC4B6, #239589);
+    padding-top: 5%;
+}
+
+.btn-custom {
+    background-color: #FF9F1C;
+}
+
+.bg-custom {
+    background-color: #FF9F1C!important;
+}
+
+.bg-color {
+    background: #2EC4B6;
+    background: linear-gradient(to right, #2EC4B6, #239589);
+}
+
+.btn-custom {
+    background-color: #FF9F1C;
+}
+
+.padding-top-custom {
+    padding-top: 5%;
+}
+
+.msg_history {
+    height: 600px !important;
+    overflow-y: auto;
+}
+
+.mesgs {
+    float: left;
+    /* padding: 30px 15px 0 25px; */
+    width: 100%;
+}
+
+.inbox_msg {
+    border: none;
+    clear: both;
+    overflow: hidden;
+}
+
+.outgoing_msg {
+    overflow: hidden;
+    margin: 26px 0 26px;
+}
+
+.sent_msg p {
+    background: #2EC4B6 none repeat scroll 0 0;
+    font-size: 14px;
+    margin: 0;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border-radius: 30px 30px 0px 30px !important;
+}
+
+.sent_msg {
+    float: right;
+    max-width: 70%;
+    min-width: 20%;
+}
+
+.time_date {
+    color: #747474;
+    display: block;
+    font-size: 12px;
+    /* margin: 8px 0px 0px 20px; */
+}
+
+.received_msg {
+    float: left;
+    max-width: 70%;
+}
+
+.received_msg p {
+    background: #011627 none repeat scroll 0 0;
+    font-size: 14px;
+    margin: 0;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border-radius: 30px 30px 30px 0px !important;
+}
+
+.info_w {
+    max-width: auto;
+    max-height: auto;
+}
+
+.info_w p {
+    background: #FF9F1C none repeat scroll 0 0;
+    font-size: 14px;
+    margin: 0;
+    color: black;
+    padding: 10px;
+    border-radius: 30px 30px 30px 30px !important;
+}
+
+.info_w span {
+    text-align: center;
+}
+
+.size-custom {
+    height: 200px!important;
+    
+    overflow-y: auto;
+}

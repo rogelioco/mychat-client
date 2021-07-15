@@ -1,0 +1,23 @@
+
+
+.list-group-item-custom {
+    position: relative;
+    display: block;
+    padding: .5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    background-color: #fff;
+}
+
+.bg-custom {
+    background-color: #011627;
+}
+
+.bg-color {
+    background: #2EC4B6;
+    background: linear-gradient(to right, #2EC4B6, #239589);
+}
+
+.padding-top-custom {
+    padding-top: 5%;
+}

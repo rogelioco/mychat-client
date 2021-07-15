@@ -1,0 +1,108 @@
+<section class="bg-color">
+    <div class="row padding-top-custom d-none d-lg-block call-md-5 row-lg-5 rpw-xl-6"></div>
+    <div class="container w-100 bg-white rounded shodow">
+        <div class="row align-items-stretch">
+            <div class="col bg-white rounded">
+                <div class="container p-0">
+                    <div>
+                        <div class="card-header bg-white">
+                            <div class="row p-1">
+                                <div class="col d-flex">
+                                    <h5 class="fw-bold text-center">{{(chat$ | async)?.nameChat}}</h5>
+                                </div>
+                                <div class="col text-end">
+                                    <div *ngIf="isOnline" class="dropdown">
+                                        <button class="btn btn-custom rounded-pill dropdown-toggle" type="button"
+                                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" (click)="returnTop()">Return to top</a></li>
+                                            <li><a class="dropdown-item" (click)="returnBottom()">Return to bottom</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item"
+                                                    [routerLink]="['/favorites-options', id]">Options and Favorites</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button *ngIf="!isOnline" (click)="upload()" type="submit"
+                                        class="btn btn-success rounded-pill"><i
+                                            class="bi bi-cloud-arrow-up-fill"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-0">
+                            <div>
+                                <div class="inbox_msg">
+                                    <div id="messageHistory" class="msg_history">
+                                        <div *ngFor="let message of messages$ | async">
+                                            <ng-container [ngSwitch]="message.user">
+                                                
+                                                <div *ngSwitchCase="(chat$ | async)?.viewAs">
+                                                    <div class="outgoing_msg">
+                                                        <div class="sent_msg">
+                                                            <p (click)=updateBookmark(message._id)>{{message.body}}</p>
+                                                                <span *ngIf="isOnline" class="time_date">
+                                                                    <i (click)="addOrRemoveFavorite(message.favorite, message._id)"
+                                                                        [className]="message.favorite ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
+                                                                        <div *ngFor="let bookmark of (chat$ | async)?.bookmarks"><i *ngIf="bookmark.message._id == message._id" class="bi bi-eye-fill"></i></div> 
+                                                                </span>
+                                                            <span class="time_date">{{message.time}} |
+                                                                {{message.date}}: {{message.user}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'WhatsApp'">
+                                                    <div class="outgoing_msg">
+                                                        <div class="info_w">
+                                                            <p (click)=updateBookmark(message._id)>{{message.body}}</p>
+                                                            <span *ngIf="isOnline" class="time_date">
+                                                                <div *ngFor="let bookmark of (chat$ | async)?.bookmarks"><i *ngIf="bookmark.message._id == message._id" class="bi bi-eye-fill"></i></div>
+                                                            </span>
+                                                            <span class="time_date">{{message.time}} |
+                                                                {{message.date}}: {{message.user}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchDefault>
+                                                    <div class="outgoing_msg">
+                                                        <div class="received_msg">
+                                                            <p (click)=updateBookmark(message._id)>{{message.body}}</p>
+                                                            <span *ngIf="isOnline" class="time_date"><i (click)="addOrRemoveFavorite(message.favorite, message._id)"
+                                                                [className]="message.favorite ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
+                                                                <div *ngFor="let bookmark of (chat$ | async)?.bookmarks"><i *ngIf="bookmark.message._id == message._id" class="bi bi-eye-fill"></i></div>
+                                                            </span>
+                                                            <span class="time_date">{{message.time}} |
+                                                                {{message.date}}: {{message.user}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isOnline" class="row ext-muted text-center">
+                                        <div class="card-footer bg-white text-muted">
+                                            <a class="btn btn-outline-dark m-1" (click)="readMore()">More</a>
+                                            <a class="btn btn-outline-dark m-1" (click)="updateIndex()">Bookmark</a>
+                                            <p>Save correctly your bookmark, 1.- click your last message, 2.-click the button 'Bookmark'</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Generated by https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections -->
+    <div style="height: 100px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+            style="height: 100%; width: 100%;">
+            <path d="M-1.97,39.95 C307.84,299.50 342.83,-70.55 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: #fff; --darkreader-inline-stroke:none; --darkreader-inline-fill:#33a6ff;"
+                data-darkreader-inline-stroke="" data-darkreader-inline-fill=""></path>
+        </svg></div>
+</section>

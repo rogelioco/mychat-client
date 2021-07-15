@@ -1,0 +1,142 @@
+<section class="bg-color">
+    <div class="container w-75 bg-white rounded shadow">
+        <div class="row align-items-stretch">
+            <div class="col bg bg-custom d-none d-lg-block call-md-5 col-lg-5 col-xl-6 rounded">
+            </div>
+            <div class="col bg-white p-5 rounded-end">
+                <h2 class="fw-bold py-3">User options</h2>
+                <div class="row">
+                    <div class="alert alert-warning" role="alert">
+                        both fields are required, you can keep your old password
+                      </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="inputUser" class="form-label">username</label>
+                            <input [(ngModel)]="newUserName" class="form-control" id="inputUser"
+                                placeholder="{{(user$ | async)?.userName}}">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-4">
+                            <label for="inputPass" class="form-label">password</label>
+                            <input [(ngModel)]="newPassword" type="password" class="form-control" id="inputPass"
+                                placeholder="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="d-grid">
+                        <button (click)="updateUser()" type="submit" class="btn btn-custom rounded-pill">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-color">
+        <div class="container w-100 bg-white rounded shadow">
+            <div class="row align-items-stretch">
+                <div *ngIf="permission" class="col bg-white p-5 pb-0 rounded-end">
+                    <h2 class="fw-bold py-3">Chat options</h2>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-4">
+                                <label for="inputChatName" class="form-label">Chat name</label>
+                                <input [(ngModel)]="newNameChat" class="form-control" id="inputChatName"
+                                    placeholder="{{(chat$ | async)?.nameChat}}">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="selectUser" class="form-label">I'm ... </label>
+                            <select class="form-select" id="selectUser" [(ngModel)]="im">
+                                <option *ngFor="let user of (chat$ |async)?.messageUsers">
+                                    <p>{{user}}</p>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="d-grid mb-4">
+                            <button class="btn btn-success rounded-pill" (click)="saveChange()">Save</button>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <label for="searchUser" class="form-label">Find and add user</label>
+                            <div class="input-group mb-3">
+                                <input [(ngModel)]="addUser" type="text" class="form-control" placeholder="username"
+                                    aria-describedby="button-addon2">
+                                <button (click)="addUserToChat()" class="btn btn-outline-danger" type="button"
+                                    id="button-addon2">Add</button>
+                            </div>
+                            <label class="form-label">Share</label>
+                            <div class="d-grid mb-4">
+                                <button (click)="updateShared()" type="button" class="btn btn-custom rounded-pill">{{(chat$ | async)?.shared}}</button>
+                            </div>
+                    </div>
+                    <div class="mb-4 size-custom">
+                        <label for="inputChatName" class="form-label">Invited users</label>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of(chat$ | async)?.guest">
+                                    <td>{{user.userName}}</td>
+                                    <td><button (click)="removeUser(user._id)" type="button"
+                                            class="btn btn-danger">Remove</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col bg-white p-5 rounded-end">
+                    <h2 class="fw-bold py-3">Favorites</h2>
+                    <div class="container p-0">
+                        <div class="inbox_msg">
+                            <div class="msg_history">
+                                <div *ngFor="let message of messages$ | async">
+                                    <ng-container [ngSwitch]="message.user">
+                                        <div *ngSwitchCase="(chat$ | async)?.viewAs">
+                                            <div class="outgoing_msg">
+                                                <div class="sent_msg">
+                                                    <p>{{message.body}}</p>
+                                                        <span class="time_date">
+                                                            <i (click)="addOrRemoveFavorite(message.favorite, message._id)"
+                                                                [className]="message.favorite ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
+
+                                                                <i class="bi bi-eye-fill"></i>
+                                                        </span>
+                                                    <span class="time_date">{{message.time}} |
+                                                        {{message.date}}: {{message.user}}</span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div *ngSwitchDefault>
+                                                <div class="outgoing_msg">
+                                                    <div class="received_msg">
+                                                        <p>{{message.body}}</p>
+                                                        <span class="time_date"><i (click)="addOrRemoveFavorite(message.favorite, message._id)"
+                                                            [className]="message.favorite ? 'bi bi-heart-fill' : 'bi bi-heart'"></i></span>
+                                                        <span class="time_date">{{message.time}} |
+                                                            {{message.date}}: {{message.user}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Generated by https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections -->
+    <div style="height: 100px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+            style="height: 100%; width: 100%;">
+            <path d="M-1.97,39.95 C307.84,299.50 342.83,-70.55 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: #fff; --darkreader-inline-stroke:none; --darkreader-inline-fill:#33a6ff;"
+                data-darkreader-inline-stroke="" data-darkreader-inline-fill=""></path>
+        </svg></div>
+</section>
