@@ -57,7 +57,7 @@ export class ChatComponent implements OnInit {
             if (res.owner._id == this.idUser) {
               this.permission = true;
             } else {
-              this.router.navigate(['/login']);
+              // this.router.navigate(['/login']);
             }
           }
         })

@@ -21,9 +21,17 @@ export class ChatsListComponent implements OnInit {
     this.data.chatsByOwer(this.id);
     this.data.chatsByInvitation(this.id);
 
-    if(this.id == null) {
-      this.isEmpty = true;
-    }
+    this.chats$.subscribe( chat => {
+      this.chatsShared$.subscribe( chatShared => {
+        console.log(chat);
+        console.log(chatShared);
+        if(chat != null  && chatShared != null) {
+          if(chat.length <= 0 && chatShared.length <= 0) {
+            this.isEmpty = true;
+          }
+        }
+      })
+    })
   }
 
 }

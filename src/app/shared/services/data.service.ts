@@ -139,7 +139,7 @@ export class DataService {
     ).subscribe();
   }
 
-  messageById(id: String, offset: number, limit: number){
+  messageById(id: String, offset: number, limit: number) {
     this.apollo.watchQuery<Message[]>({
       query: Query.messagesById,
       variables: {
@@ -313,20 +313,23 @@ export class DataService {
       },
       errorPolicy: 'all'
     }).valueChanges.subscribe(({ data }) => {
-      _idUser = data['userByUserName']._id;
-      this.apollo.mutate<Chat>({
-        mutation: Query.addGuest,
-        variables: {
-          _idChat: idChat,
-          _idUser: _idUser
-        },
-        errorPolicy: 'all'
-      }).subscribe(async ({ data }) => {
-        if(!data['addGuest'].bookmarks.includes({user:_idUser})) {
-          this.createBookMark(idChat, _idUser);
+      if (data['userByUserName'] != null) {
+        _idUser = data['userByUserName']._id;
+        this.apollo.mutate<Chat>({
+          mutation: Query.addGuest,
+          variables: {
+            _idChat: idChat,
+            _idUser: _idUser
+          },
+          errorPolicy: 'all'
+        }).subscribe(async ({ data }) => {
+          if (!data['addGuest'].bookmarks.includes({ user: _idUser })) {
+            this.createBookMark(idChat, _idUser);
 
-        }
-      })
+          }
+        })
+      }
+
     })
   }
 
@@ -378,7 +381,7 @@ export class DataService {
   }
 
   updateChat(_idChat, nameChat, viewAs) {
-    this.apollo.mutate<Chat>( {
+    this.apollo.mutate<Chat>({
       mutation: Query.updateChat,
       variables: {
         _id: _idChat,
